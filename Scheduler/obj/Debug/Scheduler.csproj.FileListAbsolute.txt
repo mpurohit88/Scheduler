@@ -1,0 +1,8 @@
+D:\Projects\Scheduler\Scheduler\bin\Debug\Scheduler.exe.config
+D:\Projects\Scheduler\Scheduler\bin\Debug\Scheduler.exe
+D:\Projects\Scheduler\Scheduler\bin\Debug\Scheduler.pdb
+D:\Projects\Scheduler\Scheduler\bin\Debug\MySql.Data.DLL
+D:\Projects\Scheduler\Scheduler\obj\Debug\Scheduler.ProjectInstaller.resources
+D:\Projects\Scheduler\Scheduler\obj\Debug\Scheduler.csproj.GenerateResource.Cache
+D:\Projects\Scheduler\Scheduler\obj\Debug\Scheduler.exe
+D:\Projects\Scheduler\Scheduler\obj\Debug\Scheduler.pdb

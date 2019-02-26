@@ -1,0 +1,9 @@
+D:\Projects\Scheduler\Scheduler\bin\Release\Scheduler.exe.config
+D:\Projects\Scheduler\Scheduler\bin\Release\Scheduler.exe
+D:\Projects\Scheduler\Scheduler\bin\Release\Scheduler.pdb
+D:\Projects\Scheduler\Scheduler\bin\Release\MySql.Data.DLL
+D:\Projects\Scheduler\Scheduler\obj\Release\Scheduler.csprojResolveAssemblyReference.cache
+D:\Projects\Scheduler\Scheduler\obj\Release\Scheduler.ProjectInstaller.resources
+D:\Projects\Scheduler\Scheduler\obj\Release\Scheduler.csproj.GenerateResource.Cache
+D:\Projects\Scheduler\Scheduler\obj\Release\Scheduler.exe
+D:\Projects\Scheduler\Scheduler\obj\Release\Scheduler.pdb
