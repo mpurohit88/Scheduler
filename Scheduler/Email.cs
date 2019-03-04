@@ -6,12 +6,9 @@ namespace Scheduler
 {
     public class Email
     {
-        public void Send()
+        public void Send(int company_id, string from, string to, string subject, string body)
         {
 
-            string subject = "Test Email from Reminder Service";
-
-            string body = "Test message body";
 
             //using (MailMessage mm = new MailMessage(ConfigurationManager.AppSettings["FromEmail"], to))
             //{
@@ -23,11 +20,8 @@ namespace Scheduler
                 //smtp.EnableSsl = true;
                 //NetworkCredential NetworkCred = new NetworkCredential(ConfigurationManager.AppSettings["Username"], ConfigurationManager.AppSettings["Password"]);
 
-                string to = "mpurohit88@gmail.com";
-
                 //It seems, your mail server demands to use the same email-id in SENDER as with which you're authenticating. 
                 //string from = "sender@domain.com";
-                string from = "reminder@somiconveyor.com";
 
                 MailMessage message = new MailMessage(from, to, subject, body);
                 SmtpClient client = new SmtpClient("mail.somiconveyor.com");

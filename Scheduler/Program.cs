@@ -15,8 +15,8 @@ namespace Scheduler
                 new EmailReminder() 
             };
 
-            //DBConnect dbConnect = new DBConnect();
-            //dbConnect.Select();
+            DBConnect dbConnect = new DBConnect();
+            dbConnect.Select();
 
             ServiceBase.Run(ServicesToRun);
         }

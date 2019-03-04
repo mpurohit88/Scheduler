@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 
 namespace Scheduler
 {
@@ -100,7 +101,8 @@ namespace Scheduler
         //Select statement
         public void Select()
         {
-            string query = "SELECT * FROM schedule";
+            string query = "SELECT s.next_reminder_date, s.frequency, s.time, s.from_address, s.to_address, s.company_id, te.subject, te.body FROM schedule s inner join task_email te on s.task_id = te.task_id where s.isActive = 1";
+            string query1 = "select company_id, email_id, password, port, host from email_config where isActive=1";
 
             try {
            
@@ -108,16 +110,47 @@ namespace Scheduler
                 if (this.OpenConnection() == true)
                 {
                     Email email = new Email();
+                    List<EmailConfigEntity> emailConfigList = new List<EmailConfigEntity>();
+
                     //Create Command
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    MySqlCommand cmd1 = new MySqlCommand(query1, connection);
                     //Create a data reader and Execute the command
-                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    MySqlDataReader dataReader = cmd1.ExecuteReader();
 
                     //Read the data and store them in the list
                     while (dataReader.Read())
                     {
-                        string s = dataReader["id"].ToString();
-                        email.Send();
+                        EmailConfigEntity emailEntity = new EmailConfigEntity();
+
+                        emailEntity.EmailId = dataReader["email_id"].ToString();
+                        emailEntity.Password = dataReader["password"].ToString();
+                        emailEntity.Port = dataReader["port"].ToString();
+                        emailEntity.Host = dataReader["host"].ToString();
+                        emailEntity.CompanyId = Convert.ToInt32(dataReader["company_id"].ToString());
+
+                        emailConfigList.Add(emailEntity);
+                    }
+
+                    dataReader.Close();
+
+                    //Create Command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    //Create a data reader and Execute the command
+                    dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        DateTime scheduleTime = Convert.ToDateTime(dataReader["next_reminder_date"].ToString());
+
+                        if (scheduleTime <= DateTime.Now)
+                        {
+                            int company_id = Convert.ToInt32(dataReader["company_id"].ToString());
+                            EmailConfigEntity emailEntity = emailConfigList.Find(item => item.CompanyId == company_id);
+
+                            email.Send(Convert.ToInt32(dataReader["company_id"].ToString()), dataReader["from_address"].ToString(), dataReader["to_address"].ToString(), dataReader["subject"].ToString()
+                                , dataReader["body"].ToString());
+                        }
                     }
 
                     //close Data Reader

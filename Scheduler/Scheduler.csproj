@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="DBConnect.cs" />
     <Compile Include="Email.cs" />
+    <Compile Include="EmailConfigEntity.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="EmailReminder.cs">
       <SubType>Component</SubType>
